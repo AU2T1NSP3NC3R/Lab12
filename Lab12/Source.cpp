@@ -1,3 +1,5 @@
+#include "LinkedList.h"
+#include <cstdlib>
 #include <iostream>
 #include <chrono>
 typedef std::chrono::high_resolution_clock Clock;
@@ -234,7 +236,7 @@ g. Heap-sort
 2. Test each of the sort operations and record the time the sort takes to complete. You
 should test each on the same unsorted array to get the best comparison. You should do
 this for each array size (from requirement 1) a minimum of 10 times. Your test should
-use the chrono library’s high_resolution_clock class. The following example of how to
+use the chrono libraryï¿½s high_resolution_clock class. The following example of how to
 do this in nanoseconds is found on Stack Overflow. Only the time in the 7 sort functions
 should be measured*/
 
@@ -290,6 +292,60 @@ int main()
 	timeStop = Clock::now(); //set the stop time
 	duration = std::chrono::duration_cast<std::chrono::nanoseconds>(timeStop - timeStart).count(); //set the duration
 	std::cout << "Time taken by heap sort: " << duration << " nanoseconds" << std::endl; //print the duration
+  
+  LinkedList myList = LinkedList();
+
+	std::string names[] = {"Joe", "Buck", "Todd", "Elizabeth", "Ricky", "Bobby", "Flynn", "Logan", "Dylan", "Igor"};
+
+	for (int i = 0; i < 50; i++) {	// fills up myList with 50 randomly constructed students
+		std::string fname = names[rand() % 10];
+		std::string lname = names[rand() % 10];
+		int mnum = rand() % 10000;
+
+		myList.insert(fname, lname, mnum);
+	}
+
+
+	myList.print();
+
+	int sort_dec = 0;
+	int attr_dec = 0;
+	int ascend_dec = 0;
+
+
+	std::cout << "-----------------------------" << std::endl;
+	std::cout << "| (1): Sort using bubble sort" << std::endl;
+	std::cout << "| (2): Sort using insertion sort" << std::endl;
+	std::cout << "| (3): Sort using radix sort" << std::endl;
+	std::cout << "-----------------------------" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "Pick one of the choices above: ";
+	std::cin >> sort_dec;
+	std::cout << std::endl;
+
+	std::cout << "-----------------------------" << std::endl;
+	std::cout << "| (1): Sort by first name " << std::endl;
+	std::cout << "| (2): Sort by last name " << std::endl;
+	std::cout << "| (3): Sort by m number" << std::endl;
+	std::cout << "-----------------------------" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "Pick one of the choices above: ";
+	std::cin >> attr_dec;
+	std::cout << std::endl;
+
+	std::cout << "-----------------------------" << std::endl;
+	std::cout << "| (1): Sort by ascending order " << std::endl;
+	std::cout << "| (2): Sort by descending order " << std::endl;
+	std::cout << "-----------------------------" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "Pick one of the choices above: ";
+	std::cin >> ascend_dec;
+
+
+	return 0;
 }
 
 
