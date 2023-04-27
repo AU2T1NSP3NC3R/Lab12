@@ -43,7 +43,7 @@ void mergeSort(int arr[], int size)
 	int i, j, k;
 	int n1 = size/2; //size of the left array
 	int n2 = size/2; //size of the right array
-	int L[100], R[100]; //create two temporary arrays
+	int L[25000], R[25000]; //create two temporary arrays
 	for (i = 0; i < n1; i++) //copy the data to the left array
 		L[i] = arr[0 + i];
 	for (j = 0; j < n2; j++) //copy the data to the right array
@@ -107,8 +107,8 @@ void quickSort(int arr[], int low, int high)
 //create a counting sort function that sorts an array of integers
 void countingSort(int arr[], int n)
 {
-	int output[100]; //create an output array
-	int count[100]; //create a count array
+	int output[25000]; //create an output array
+	int count[25000]; //create a count array
 	int max = arr[0]; //set the max to the first element
 	for (int i = 1; i < n; i++) //for each element in the array
 	{
@@ -132,8 +132,8 @@ void countingSort(int arr[], int n)
 //create a count sort function that sorts an array with the parameters array and int size
 void countSort(int arr[], int size)
 {
-	int output[100]; //create an output array
-	int count[100]; //create a count array
+	int output[50000]; //create an output array
+	int count[50000]; //create a count array
 	int max = arr[0]; //set the max to the first element
 	for (int i = 1; i < size; i++) //for each element in the array
 	{
@@ -165,7 +165,7 @@ int getMax(int arr[], int n)
 //create a countSort function that sorts an array of integers
 void countSort2(int arr[], int n, int exp)
 {
-	int output[100]; //create an output array
+	int output[25000]; //create an output array
 	int i, count[10] = { 0 }; //create a count array
 	for (i = 0; i < n; i++) //for each element in the array
 		count[(arr[i] / exp) % 10]++; //increment the count
@@ -240,18 +240,18 @@ should be measured*/
 
 int main()
 {
-	const int n = 10; //set the size of the array
+	const int n = 25000; //set the size of the array
 	int arr[n]; //create an array
 	srand(time(NULL)); //seed the random number generator
 	for (int i = 0; i < n; i++) //for each element in the array
 		arr[i] = rand() % (2*n); //set the element to a random number
-	int arr_size = sizeof(arr) / sizeof(arr[0]); //set the size of the array
+	int arr_size = n; //set the size of the array
 
 	auto timeStart = Clock::now(); //set the start time
 	bubbleSort(arr, arr_size); //set the bubbleSort to the array
 	auto timeStop = Clock::now(); //set the stop time
-	int duration = std::chrono::duration_cast<std::chrono::nanoseconds>(timeStop - timeStart).count(); //set the duration
-	std::cout << "Time taken by bubble sort: " << duration << " nanoseconds" << std::endl; //print the duration
+	int duration = std::chrono::duration_cast<std::chrono::milliseconds>(timeStop - timeStart).count(); //set the duration
+	std::cout << "Time taken by bubble sort: " << duration << " milliseconds" << std::endl; //print the duration
 
 	timeStart = Clock::now(); //set the start time
 	insertionSort(arr, arr_size); //set the insertionSort to the array
@@ -265,11 +265,13 @@ int main()
 	duration = std::chrono::duration_cast<std::chrono::nanoseconds>(timeStop - timeStart).count(); //set the duration
 	std::cout << "Time taken by merge sort: " << duration << " nanoseconds" << std::endl; //print the duration
 
+	/*
 	timeStart = Clock::now(); //set the start time
 	quickSort(arr, 0, arr_size - 1); //set the quickSort to the array
 	timeStop = Clock::now(); //set the stop time
 	duration = std::chrono::duration_cast<std::chrono::nanoseconds>(timeStop - timeStart).count(); //set the duration
-	std::cout << "Time taken by quick sort: " << duration << " nanoseconds" << std::endl; //print the duration
+	*/
+	std::cout << "Time taken by quick sort: " << "N/A" << " nanoseconds" << std::endl; //print the duration
 
 	timeStart = Clock::now(); //set the start time
 	countSort(arr, arr_size);
